@@ -3,29 +3,58 @@
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          colors="true"
->
+         testdox="true">
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
+
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
-    <coverage processUncoveredFiles="true">
-        <include>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./app</directory>
-        </include>
-    </coverage>
+            <directory suffix=".php">./core</directory>
+            <exclude>
+                <directory suffix=".blade.php">./</directory>
+                <directory suffix="web.php">./core</directory>
+                <directory suffix="api.php">./core</directory>
+                <directory suffix="ModuleServiceProvider.php">./core</directory>
+                <directory suffix="SendResponse.php">./core/src/Base/Traits/Response</directory>
+                <directory>./database/migrations/</directory>
+                <directory>./database/factories</directory>
+                <directory>./database/seeders</directory>
+                <directory>./core/src/*/database/migrations/</directory>
+                <directory>./core/src/*/database/factories</directory>
+                <directory>./core/src/*/database/seeders</directory>
+                <directory>./core/src/Base/Traits/ServiceProvider</directory>
+                <directory>./core/src/*/Requests</directory>
+                <directory>./core/src/*/Resources</directory>
+            </exclude>
+        </whitelist>
+    </filter>
     <php>
         <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
-        <!-- <server name="DB_CONNECTION" value="sqlite"/> -->
-        <!-- <server name="DB_DATABASE" value=":memory:"/> -->
-        <server name="MAIL_MAILER" value="array"/>
+        <server name="DB_CONNECTION" value="sqlite"/>
+        <server name="DB_DATABASE" value=":memory:"/>
+        <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
-        <server name="TELESCOPE_ENABLED" value="false"/>
     </php>
+    <logging>
+        <log type="coverage-html" target="./ci/codeCoverage/" lowUpperBound="35" highLowerBound="70"/>
+        <log type="coverage-clover" target="./ci/codeCoverage/codeCoverage.xml"/>
+        <log target="./ci/codeCoverage/metrics.xml"/>
+        <log target="./ci/codeCoverage/logfile.xml"/>
+        <log type="coverage-php" target="/ci/codeCoverage/coverage.serialized"/>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+        <log type="junit" target="/ci/codeCoverage/logfile.xml"/>
+        <log type="testdox-html" target="/ci/codeCoverage/testdox.html"/>
+        <log type="testdox-text" target="/ci/codeCoverage/testdox.txt"/>
+        <log type="testdox-xml" target="/ci/testResults.xml" />
+    </logging>
 </phpunit>
