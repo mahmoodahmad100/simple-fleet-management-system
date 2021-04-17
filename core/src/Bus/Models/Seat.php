@@ -22,4 +22,16 @@ class Seat extends Model
     {
         return $this->belongsTo(Bus::class, 'bus_id');
     }
+
+    /**
+     * get all the available seats
+     * 
+     * @param int $station1_id
+     * @param int $station2_id
+     * @return $this
+     */
+    public function all_available($station1_id, $station2_id)
+    {
+        # recursion method ...
+    }
 }
