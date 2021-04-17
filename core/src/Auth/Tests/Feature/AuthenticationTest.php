@@ -112,7 +112,7 @@ class AuthenticationTest extends TestCase
      */
     public function testItShouldUpdateAuthUserInfo()
     {
-        $data         = ['code' => 'USR-123ABC'];
+        $data         = ['name' => 'New Name'];
         $json         = $this->getJsonStructure();
         $json['data'] = [
             'id',
