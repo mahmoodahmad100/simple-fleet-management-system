@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits\Response;
+namespace Core\Base\Traits\Response;
 
 trait SendResponse
 {

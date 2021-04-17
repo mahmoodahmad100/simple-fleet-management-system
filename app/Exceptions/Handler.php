@@ -6,7 +6,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
-use App\Traits\Response\SendResponse;
+use Core\Base\Traits\Response\SendResponse;
 
 class Handler extends ExceptionHandler
 {

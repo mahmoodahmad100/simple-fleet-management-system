@@ -1,0 +1,12 @@
+{
+    "name": "system/core",
+    "description": "the core components in the system",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mahmood Ahmad",
+            "email": "mahmood073@gmail.com"
+        }
+    ],
+    "require": {}
+}
