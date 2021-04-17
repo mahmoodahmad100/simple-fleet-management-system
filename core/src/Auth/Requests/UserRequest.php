@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         if (request()->route()->getName() == 'api.v1.login') {
            return [
                'email'    => 'required|email',
-               'password' => 'required|string',
+               'password' => 'required|string|max:15',
            ];
         }
 
@@ -39,14 +39,14 @@ class UserRequest extends FormRequest
                 return [
                     'name'     => 'required|string',
                     'email'    => 'required|email|unique:users',
-                    'password' => 'required|string',
+                    'password' => 'required|string|max:15',
                 ];
             }
             case 'PUT': {
                 return [
                     'name'     => 'nullable|string',
                     'email'    => 'nullable|email',
-                    'password' => 'nullable|string',
+                    'password' => 'nullable|string|max:15',
                 ];
             }
         }
